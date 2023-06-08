@@ -1,0 +1,27 @@
+.boost {
+	background: var(--dark-violet) url(../../images/bg-boost-desktop.svg)
+		no-repeat center/cover;
+	padding: 4rem 0;
+	text-align: center;
+}
+
+.boost .l-heading {
+	font-size: 3rem;
+	color: #fff;
+	line-height: 2.5;
+}
+
+.boost .btn {
+	border-radius: 30px;
+	padding: 1rem 3rem;
+	font-size: 1.25rem;
+}
+
+@media (max-width: 500px){
+    .boost{
+        background-image: url(../../images/bg-boost-mobile.svg);
+    }
+    .boost .l-heading{
+        font-size: 1.5rem;
+    }
+}

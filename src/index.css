@@ -1,13 +1,49 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body {
+	font-family: 'Poppins', sans-serif;
+	overflow-x: hidden;
+	scroll-behavior: smooth;
+}
+
+:root {
+	--cyan: hsl(180, 66%, 49%);
+	--dark-violet: hsl(257, 27%, 26%);
+	--red: hsl(0, 87%, 67%);
+	--gray: hsl(0, 0%, 75%);
+	--grayish-violet: hsl(257, 7%, 63%);
+	--Very-Dark-Blue: hsl(255, 11%, 22%);
+	--Very-Dark-Violet: hsl(260, 8%, 14%);
+}
+
+.container {
+	max-width: 80%;
+	margin: 0 auto;
+}
+
+.btn {
+	all: unset;
+	color: var(--grayish-violet);
+	font-weight: 600;
+
+	cursor: pointer;
+}
+
+.btn-primary {
+	background-color: var(--cyan);
+	padding: 0.5rem 1.5rem;
+	color: #fff;
+	transition: background-color 0.3s ease;
+}
+.btn-primary:hover {
+	background-color: hsl(180, 66%, 65%);
+}
+
+.l-heading {
+	line-height: 1.25;
+	color: var(--Very-Dark-Violet);
 }

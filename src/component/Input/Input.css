@@ -1,0 +1,48 @@
+.input-container {
+	background: url(../../images/bg-shorten-desktop.svg) var(--dark-violet) top
+		center/cover no-repeat;
+	width: 100%;
+	padding: 3rem;
+	border-radius: 10px;
+	position: relative;
+	top: -9rem;
+}
+
+.input-container .input-field {
+	display: flex;
+	gap: 30px;
+}
+
+.input-container .input-field input {
+	flex: 1;
+	font-family: 'Poppins';
+	font-size: 1rem;
+	padding: 1rem 1.5rem;
+	border: none;
+	outline: none;
+}
+
+.input-container .input-field input,
+.input-container .input-field button {
+	border-radius: 10px;
+}
+
+.input-container .input-field button {
+	padding: 1rem 3rem;
+    text-align: center;
+}
+
+@media (max-width: 500px) {
+	.input-container {
+		padding: 1rem;
+		background: url(../../images/bg-shorten-mobile.svg) var(--dark-violet)
+			left center/cover no-repeat;
+	}
+	.input-container .input-field {
+		flex-direction: column;
+		gap: 20px;
+	}
+	.input-container .input-field input {
+		font-size: 0.75rem;
+	}
+}
