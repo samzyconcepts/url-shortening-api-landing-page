@@ -1,0 +1,70 @@
+.input-container {
+	background: url(../../images/bg-shorten-desktop.svg) var(--dark-violet) top
+		center/cover no-repeat;
+	width: 100%;
+	padding: 3rem;
+	border-radius: 10px;
+	position: relative;
+}
+
+.input-container .input-field {
+	display: flex;
+	align-items: flex-start;
+	gap: 30px;
+}
+
+.input-container .input-field .input {
+	flex: 1;
+}
+.input-container .input-field .input input {
+	font-family: 'Poppins';
+	font-size: 1rem;
+	padding: 1rem 1.5rem;
+	border: none;
+	outline: none;
+	width: 100%;
+}
+
+.input-container .input-field input,
+.input-container .input-field button {
+	border-radius: 10px;
+}
+
+.input-container .input-field button {
+	padding: 1rem 3rem;
+	text-align: center;
+}
+
+.error-msg {
+	color: var(--red);
+	margin-top: 0.5rem;
+	font-style: italic;
+}
+.input-container .input-field .input .link-input.error {
+	border: 2px solid var(--red);
+}
+
+@media (max-width: 500px) {
+	.input-container {
+		padding: 1rem;
+		background: url(../../images/bg-shorten-mobile.svg) var(--dark-violet)
+			left center/cover no-repeat;
+	}
+	.input-container .input-field {
+		flex-direction: column;
+		align-items: normal;
+		gap: 10px;
+	}
+	.input-container .input-field input {
+		font-size: 0.75rem;
+		width: 100%;
+	}
+	.input-container .input-field button {
+		padding: 1rem 0;
+		text-align: center;
+		width: 100%;
+	}
+	.error-msg {
+		font-size: 0.75rem;
+	}
+}
