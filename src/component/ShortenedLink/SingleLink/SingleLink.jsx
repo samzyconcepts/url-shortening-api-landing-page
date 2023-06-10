@@ -1,50 +1,50 @@
+import { useEffect, useState } from 'react'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 import './SingleLink.css'
 
-// const copyToClipboard = (str, e) => {
-// 	e.preventDefault()
-// 	setTimeout(() => {
-// 		e.target.classList.remove('singleLink__buttonCopied')
-// 		e.target.textContent = 'Copy'
-// 	}, 5000)
+const SingleLink = ({ link }) => {
+	const [copied, setCopied] = useState(false)
 
-// 	e.target.classList.add('singleLink__buttonCopied')
-// 	e.target.textContent = 'Copied!'
+	useEffect(() => {
+		const timer = setTimeout(() => {
+			setCopied(false)
+		}, 2000)
 
-// 	const el = document.createElement('textarea')
-// 	el.value = str
-// 	document.body.appendChild(el)
-// 	el.select()
-// 	document.execCommand('copy')
-// 	document.body.removeChild(el)
-// }
+		return () => clearTimeout(timer)
+	}, [copied])
 
-const SingleLink = ({inputValue}) => {
 	return (
 		<div className='singleLink'>
 			<div className='singleLink__link'>
 				<a
-					href={inputValue}
+					href={link.original_link}
 					className='singleLink__original'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
-					{inputValue}
+					{link.original_link}
 				</a>
 			</div>
 			<div className='singleLink__container'>
 				<a
-					href='{link.full_short_link}'
+					href={link.full_short_link}
 					className='singleLink__shortened'
 					target='_blank'
 					rel='noreferrer noopener'
 				>
-					jfdkafj
+					{link.full_short_link}
 				</a>
 
-				<CopyToClipboard text={inputValue}>
-					<button className='singleLink__button btn btn-primary'>
-						Copy
+				<CopyToClipboard
+					text={link.full_short_link}
+					onCopy={() => setCopied(true)}
+				>
+					<button
+						className={`singleLink__button btn btn-primary ${
+							copied ? 'singleLink__buttonCopied' : ''
+						}`}
+					>
+						{copied ? 'Copied' : 'Copy'}
 					</button>
 				</CopyToClipboard>
 			</div>

@@ -9,7 +9,11 @@ const Form = ({ setInputValue }) => {
 	const handleSubmit = (e) => {
 		e.preventDefault()
 
-		if (link === '') setErrorMsg('Please add a link')
+		if (link === '') {
+			setErrorMsg('Please add a link')
+		} else if (!link.match(/^(ftp|http|https):\/\/[^ "]+$/)) {
+			setErrorMsg('Please enter a valid URL')
+		}
 
 		setTimeout(() => {
 			setErrorMsg('')
