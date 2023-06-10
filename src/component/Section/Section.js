@@ -1,4 +1,4 @@
-import Input from '../Input/Input'
+import ShortenedLink from '../ShortenedLink/ShortenedLink'
 
 // import css
 import './Section.css'
@@ -12,7 +12,7 @@ const Section = () => {
 	return (
 		<section id='features'>
 			<div className='container'>
-				<Input />
+				<ShortenedLink />
 				<div className='features-content'>
 					<h1 className='l-heading'>Advanced Statistics</h1>
 					<p className='l-para'>
