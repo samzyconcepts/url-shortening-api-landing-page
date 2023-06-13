@@ -27,7 +27,6 @@ const ShortenedLink = () => {
 
 		setLinks([result, ...links])
 		localStorage.setItem('links', JSON.stringify([result, ...links]))
-		return true
 	}
 
 	const fetchLinks = () => {
@@ -43,7 +42,7 @@ const ShortenedLink = () => {
 		if (inputValue.length) {
 			fetchData()
 		}
-	}, [inputValue])
+	})
 
 	return (
 		<div className='shortenedLink'>
