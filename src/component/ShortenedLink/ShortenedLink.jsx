@@ -1,57 +1,63 @@
-import Form from '../Form/Form'
-import SingleLink from './SingleLink/SingleLink'
+import Form from "../Form/Form";
+import SingleLink from "./SingleLink/SingleLink";
 
-import './ShortenedLink.css'
-import { useState, useEffect } from 'react'
-import axios from 'axios'
+import "./ShortenedLink.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 const ShortenedLink = () => {
-	const [links, setLinks] = useState([])
-	const [inputValue, setInputValue] = useState('')
+    const [links, setLinks] = useState([]);
+    const [controller, setController] = useState(null);
 
-	const url = `https://api.shrtco.de/v2/shorten?url=${inputValue}`
+    useEffect(() => {
+        const abortController = new AbortController();
+        setController(abortController);
 
-	const fetchData = async () => {
-		const response = await axios(url)
-		const shortLink = response.data
+        return () => {
+            abortController.abort();
+        };
+    }, []);
 
-		const { result } = shortLink
-		const linkExists = links.find(
-			(link) => link.original_link === result.original_link
-		)
+    // function to fetch shorten link
+    const shorten = async (url) => {
+        try {
+            const api =
+                "https://s.squizee.in/short/formResponse?url=" +
+                encodeURIComponent(url) +
+                "&email=&format=json&suffix=";
 
-		if (linkExists) {
-			alert('This link has already been shortened')
-			return true
-		}
+            const response = await axios.get(api, { signal: controller.signal });
 
-		setLinks([result, ...links])
-		localStorage.setItem('links', JSON.stringify([result, ...links]))
-	}
+            const link = response.data;
 
-	const fetchLinks = () => {
-		const links = JSON.parse(localStorage.getItem('links'))
-		if (links) setLinks(links)
-	}
+            // Update links state if needed
+            const result = {
+                destination: url,
+                shortened_url: link.shortened_url,
+            };
 
-	useEffect(() => {
-		fetchLinks()
-	}, [])
+            setLinks([result, ...links]);
+            localStorage.setItem("links", JSON.stringify([result, ...links]));
+        } catch (error) {
+            console.error("Error shortening link:", error);
+        }
+    };
 
-	useEffect(() => {
-		if (inputValue.length) {
-			fetchData()
-		}
-	})
+    const fetchLinks = () => {
+        const links = JSON.parse(localStorage.getItem("links"));
+        if (links) setLinks(links);
+    };
 
-	return (
-		<div className='shortenedLink'>
-			<Form setInputValue={setInputValue} />
-			{links.map((link) => (
-				<SingleLink key={link.code} link={link} />
-			))}
-		</div>
-	)
-}
+    useEffect(() => {
+        fetchLinks();
+    }, []);
 
-export default ShortenedLink
+    return (
+        <div className="shortenedLink">
+            <Form shorten={shorten} />
+            {links && links.map((link) => <SingleLink key={link.shortened_url} link={link} />)}
+        </div>
+    );
+};
+
+export default ShortenedLink;
